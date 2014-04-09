@@ -56,6 +56,8 @@ void mouse_callback(GLFWwindow*, int k, int action, int){
 }
 
 INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT){
+
+	//init window, opengl
 	glfwInit();
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	window = glfwCreateWindow(1024, 768, "test", 0, 0);
@@ -71,6 +73,8 @@ INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT){
 		shader->addLight(glm::vec3(0.25f, 1, 0.5));
 
 		scene.bindShader(shader);
+		
+		//add objects
 		scene.addObject(0, { loadModel("Models/skybox2.ply"),
 			loadTexture("Textures/skybox.bmp") }, SkyBox);
 		scene.addObject(1, { loadModel("Models/dungeon.ply"),
@@ -110,9 +114,11 @@ INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, INT){
 	catch (std::exception& e){
 		MessageBoxA(0, e.what(), 0, 0);
 	}
+	//release objects
 	scene.releaseObject(0);
 	scene.releaseObject(1);
 	scene.releaseObject(4);
+	
 	glfwDestroyWindow(window);
 	glfwTerminate();
 }

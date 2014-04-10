@@ -42,5 +42,4 @@ void Object::update(unsigned time){
 	lastTime = time;
 }
 void Object::setTime(unsigned time){
-
 }
